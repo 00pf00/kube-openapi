@@ -105,7 +105,6 @@ func (s *SchemaValidator) Applies(source interface{}, kind reflect.Kind) bool {
 // Validate validates the data against the schema
 func (s *SchemaValidator) Validate(data interface{}) *Result {
 	result := new(Result)
-	return result
 	if s == nil {
 		return result
 	}
