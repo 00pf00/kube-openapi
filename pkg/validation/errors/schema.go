@@ -16,6 +16,7 @@ package errors
 
 import (
 	"fmt"
+	"runtime/debug"
 	"strings"
 )
 
@@ -226,6 +227,7 @@ func InvalidType(name, in, typeName string, value interface{}) *Validation {
 	if in != "" {
 		switch value.(type) {
 		case string:
+			fmt.Printf(string(debug.Stack()))
 			message = fmt.Sprintf(typeFailWithData, name, in, typeName, value)
 		case error:
 			message = fmt.Sprintf(typeFailWithError, name, in, typeName, value)

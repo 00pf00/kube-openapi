@@ -117,6 +117,7 @@ func (s *SchemaValidator) Validate(data interface{}) *Result {
 
 	tpe := reflect.TypeOf(data)
 	kind := tpe.Kind()
+	fmt.Printf("kind = %v", kind)
 	for kind == reflect.Ptr {
 		tpe = tpe.Elem()
 		kind = tpe.Kind()
@@ -162,8 +163,8 @@ func (s *SchemaValidator) Validate(data interface{}) *Result {
 			debugLog("%T does not apply for %v", v, kind)
 			continue
 		}
-
 		err := v.Validate(d)
+		fmt.Println(err)
 		result.Merge(err)
 		result.Inc()
 	}

@@ -15,6 +15,7 @@
 package validate
 
 import (
+	"fmt"
 	"reflect"
 
 	"k8s.io/kube-openapi/pkg/validation/errors"
@@ -216,6 +217,7 @@ func (s *stringValidator) Applies(source interface{}, kind reflect.Kind) bool {
 func (s *stringValidator) Validate(val interface{}) *Result {
 	data, ok := val.(string)
 	if !ok {
+		fmt.Printf("Forced conversion to string failed, StringValidator = %v, data = %v", *s, data)
 		return errorHelp.sErr(errors.InvalidType(s.Path, s.In, stringType, val))
 	}
 
